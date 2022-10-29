@@ -16,7 +16,7 @@ import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding :ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: MovieListAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +27,6 @@ class MainActivity : AppCompatActivity() {
         adapter = MovieListAdapter()
         binding.rvMovie.adapter = adapter
 
-        //inset data dummy
-        loadDataFromApi()
-
-
     }
 
     private fun loadDataFromApi() {
@@ -38,19 +34,19 @@ class MainActivity : AppCompatActivity() {
 
         GlobalScope.launch(Dispatchers.IO) {
             try {
-                val response =service.getPopularMovie()
+                val response = service.getPopularMovie()
 
-                if(response.isSuccessful){
-                    withContext(Dispatchers.Main){
-                        val listMovie =response.body()?.results?.map {
+                if (response.isSuccessful) {
+                    withContext(Dispatchers.Main) {
+                        val listMovie = response.body()?.results?.map {
                             Movie(
-                                title= it.title,
+                                title = it.title,
                                 genre = it.releaseDate,
                                 imagePoster = it.posterPath
                             )
                         }
-                        withContext(Dispatchers.Main){
-                            if(listMovie!=null){
+                        withContext(Dispatchers.Main) {
+                            if (listMovie != null) {
                                 adapter.addItem(listMovie)
                             }
                         }
@@ -58,12 +54,12 @@ class MainActivity : AppCompatActivity() {
 
                     }
 
-                }else{
-                    withContext(Dispatchers.Main){
+                } else {
+                    withContext(Dispatchers.Main) {
                         Toast.makeText(this@MainActivity, "gagal", Toast.LENGTH_SHORT).show()
                     }
                 }
-            }catch (e:Exception){
+            } catch (e: Exception) {
 
             }
 

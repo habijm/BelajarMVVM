@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace 'com.chirikualii.materiapi'
-    compileSdk 32
+    compileSdk 33
 
     buildFeatures {
         viewBinding true
@@ -15,7 +15,7 @@ android {
     defaultConfig {
         applicationId "com.chirikualii.materiapi"
         minSdk 23
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -57,4 +57,15 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0-alpha02"
+
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.0-alpha02"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.0-alpha02"
+
+    //View Class AndroidX
+    implementation "androidx.fragment:fragment-ktx:1.3.5"
+    implementation "androidx.activity:activity-ktx:1.2.3"
 }
