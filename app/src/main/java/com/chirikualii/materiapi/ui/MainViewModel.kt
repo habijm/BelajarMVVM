@@ -15,12 +15,16 @@ class MainViewModel(val repo: MovieRepo) : ViewModel(){
     private val _listMovie = MutableLiveData<List<Movie>>()
     val listMovie :LiveData<List<Movie>> =_listMovie
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading :LiveData<Boolean> = _isLoading
+
     fun doGetPopularMovie(){
         viewModelScope.launch(Dispatchers.IO){
            val listData = repo.getPopularMovie()
 
             withContext(Dispatchers.Main){
-                _listMovie.value =listData
+                _listMovie.value = listData
+                _isLoading.value = false
             }
         }
     }

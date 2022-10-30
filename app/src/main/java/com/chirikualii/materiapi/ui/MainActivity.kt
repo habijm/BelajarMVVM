@@ -35,11 +35,15 @@ class MainActivity : AppCompatActivity() {
         binding.rvMovie.adapter = adapter
 
         mViewModel.doGetPopularMovie()
-        binding.progressBar.visibility = View.VISIBLE
 
         mViewModel.listMovie.observe(this) {
             binding.progressBar.visibility = View.INVISIBLE
             adapter.addItem(it)
+        }
+        mViewModel.isLoading.observe(this) { isLoading ->
+            if (isLoading){
+                binding.progressBar.visibility = View.VISIBLE
+            }
         }
     }
 }
